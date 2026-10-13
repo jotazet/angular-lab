@@ -1,0 +1,49 @@
+<form class="filters" (submit)="$event.preventDefault()">
+	<label>
+		Search
+		<input
+			type="search"
+			placeholder="Name or description"
+			[value]="filters().phrase"
+			(input)="updatePhrase($event)"
+		/>
+	</label>
+
+	<label>
+		Cuisine
+		<select [value]="filters().cuisine" (change)="updateCuisine($event)">
+			<option value="">All cuisines</option>
+			@for (cuisine of cuisines; track cuisine) {
+				<option [value]="cuisine">{{ cuisine }}</option>
+			}
+		</select>
+	</label>
+
+	<label>
+		Status
+		<select [value]="filters().isActive" (change)="updateStatus($event)">
+			<option value="">Wszystkie</option>
+			<option value="true">Otwarte</option>
+		</select>
+	</label>
+
+	<label>
+		Sortowanie
+		<select [value]="sortBy()" (change)="updateSort($event)">
+			<option value="">Domyślne</option>
+			<option value="rating">Rating: najwyższy</option>
+			<option value="deliveryTime">Czas dostawy: najkrótszy</option>
+			<option value="deliveryFee">Koszt dostawy: najniższy</option>
+		</select>
+	</label>
+
+	<button type="button" (click)="resetFilters()">Wyczyść filtry</button>
+</form>
+
+<section class="list">
+	@for (restaurant of filteredRestaurants(); track restaurant.id) {
+		<app-restaurant-card [restaurant]="restaurant" />
+	} @empty {
+		<div class="no-restaurants">Nie znaleziono restauracji.</div>
+	}
+</section>
