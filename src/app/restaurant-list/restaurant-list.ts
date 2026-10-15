@@ -1,7 +1,6 @@
-import { Component, computed, signal } from '@angular/core';
-import { Restaurant } from '../models/restaurant';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RestaurantCard } from '../restaurant-card/restaurant-card';
-import restaurantsData from '../../../public/restaurants.json';
+import { Restaurants } from '../services/restaurants';
 
 @Component({
   imports: [RestaurantCard],
@@ -10,8 +9,9 @@ import restaurantsData from '../../../public/restaurants.json';
   templateUrl: './restaurant-list.html',
 })
 export class RestaurantList {
-  private readonly restaurants = signal<Restaurant[]>(restaurantsData);
-  readonly cuisines = [...new Set(restaurantsData.map((restaurant) => restaurant.cuisine))];
+  private readonly restaurantsService = inject(Restaurants);
+  private readonly restaurants = this.restaurantsService.getAll();
+  readonly cuisines = [...new Set(this.restaurants().map((restaurant) => restaurant.cuisine))];
   readonly filters = signal({ phrase: '', cuisine: '', isActive: '' });
   readonly sortBy = signal<'rating' | 'deliveryTime' | 'deliveryFee' | ''>('');
 

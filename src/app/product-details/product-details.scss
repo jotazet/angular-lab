@@ -1,0 +1,79 @@
+.product-page {
+  width: min(100% - 2rem, 560px);
+  margin: 2rem auto;
+  color: #27231f;
+  font-family: system-ui, sans-serif;
+
+  .back {
+    color: #a34b20;
+    font-weight: 600;
+  }
+
+  .image {
+    display: block;
+    width: 100%;
+    height: 280px;
+    margin-top: 1rem;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  h1 {
+    margin: 1rem 0 0.5rem;
+  }
+
+  .description {
+    color: #5f5750;
+    line-height: 1.5;
+  }
+
+  .price {
+    color: #2f7a4b;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .status {
+    width: fit-content;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .available {
+    color: #1d6b3c;
+    background: #e3f5ea;
+  }
+
+  .not-available {
+    color: #8a1c1c;
+    background: #fde8e8;
+  }
+
+  // FR-04: niedostępny produkt — wyszarzone zdjęcie
+  .unavailable .image {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  button {
+    padding: 0.8rem 1.2rem;
+    color: #fff;
+    background: #b5541f;
+    border: 0;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #96441a;
+    }
+
+    &:disabled {
+      color: #5f5750;
+      background: #ddd8d3;
+      cursor: not-allowed;
+    }
+  }
+}

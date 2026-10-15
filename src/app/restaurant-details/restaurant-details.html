@@ -1,0 +1,21 @@
+<main class="details">
+    <a class="back" routerLink="/restaurants">← Wróć do listy</a>
+
+    @if (restaurant(); as restaurant) {
+        <img class="image" [src]="restaurant.imageUrl" [alt]="restaurant.name">
+
+        <h1>{{ restaurant.name }}</h1>
+        <p class="description">{{ restaurant.description }}</p>
+
+        <ul class="info">
+            <li>Ocena: <strong>{{ restaurant.rating }}</strong></li>
+            <li>Czas dostawy: <strong>{{ restaurant.deliveryTimeMin }}–{{ restaurant.deliveryTimeMax }} min</strong></li>
+            <li>Koszt dostawy: <strong>{{ restaurant.deliveryFee }} zł</strong></li>
+            <li>Adres: <strong>{{ restaurant.address }}</strong></li>
+        </ul>
+
+        <a class="menu-link" [routerLink]="['/restaurant', restaurant.id, 'menu']">Zobacz menu →</a>
+    } @else {
+        <p>Nie znaleziono restauracji.</p>
+    }
+</main>

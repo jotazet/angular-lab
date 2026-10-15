@@ -1,4 +1,4 @@
-<section class="card">
+<a class="card" [routerLink]="['/restaurant', restaurant().id]">
     <div class="name">{{ restaurant().name }}</div>
     <div class="description">{{ restaurant().description }}</div>
     <div class="cuisine">{{ restaurant().cuisine }}</div>
@@ -10,4 +10,4 @@
     <div class="deliveryFee">Delivery Fee: {{ restaurant().deliveryFee }} zł</div>
     <div class="minimumOrderValue">Minimum order: {{ restaurant().minimumOrderValue }} zł</div>
     <div class="isActive">Status: {{ restaurant().isActive ? 'aktywna' : 'nieaktywna' }}</div>
-</section>
+</a>

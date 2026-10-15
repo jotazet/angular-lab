@@ -1,0 +1,34 @@
+<main class="menu-page">
+    @if (restaurant(); as restaurant) {
+        <a class="back" [routerLink]="['/restaurant', restaurant.id]">← Wróć do restauracji</a>
+
+        <h1>{{ restaurant.name }}</h1>
+
+        @for (category of categories(); track category.name) {
+            <section>
+                <h2>{{ category.name }}</h2>
+
+                <ul class="products">
+                    @for (product of category.products; track product.id) {
+                        <li>
+                            <a
+                                class="product"
+                                [class.unavailable]="!product.isAvailable"
+                                [routerLink]="['/restaurant', restaurant.id, 'menu', product.id]"
+                            >
+                                <span class="name">{{ product.name }}</span>
+                                @if (!product.isAvailable) {
+                                    <span class="badge">Niedostępny</span>
+                                }
+                                <span class="price">{{ product.price }} zł</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </section>
+        }
+    } @else {
+        <a class="back" routerLink="/restaurants">← Wróć do listy</a>
+        <p>Nie znaleziono restauracji.</p>
+    }
+</main>

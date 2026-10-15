@@ -1,0 +1,31 @@
+<main class="product-page">
+    <a class="back" [routerLink]="['/restaurant', id(), 'menu']">← Wróć do menu</a>
+
+    @if (product(); as product) {
+        <article class="product" [class.unavailable]="!product.isAvailable">
+            <img class="image" [src]="product.imageUrl" [alt]="product.name">
+
+            <h1>{{ product.name }}</h1>
+            <p class="description">{{ product.description }}</p>
+            <p class="price">{{ product.price }} zł</p>
+
+            @if (product.isAvailable) {
+                <p class="status available">Dostępny</p>
+            } @else {
+                <p class="status not-available">Niedostępny</p>
+            }
+
+            <button type="button" [disabled]="!product.isAvailable" (click)="addToCart()">
+                Dodaj do koszyka
+            </button>
+
+            <p role="status">
+                @if (added()) {
+                    Dodano do koszyka.
+                }
+            </p>
+        </article>
+    } @else {
+        <p>Nie znaleziono produktu.</p>
+    }
+</main>

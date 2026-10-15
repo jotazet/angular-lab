@@ -1,8 +1,9 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Restaurant } from '../models/restaurant';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-restaurant-card',
   styleUrl: './restaurant-card.scss',
   templateUrl: './restaurant-card.html',
