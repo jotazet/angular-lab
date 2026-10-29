@@ -1,0 +1,67 @@
+:host {
+	display: block;
+	margin: 0 auto;
+	max-width: 640px;
+	padding: 1.5rem 1rem;
+}
+
+form {
+	display: grid;
+	gap: 0.75rem;
+}
+
+label {
+	display: grid;
+	font-weight: 600;
+	gap: 0.3rem;
+}
+
+input,
+textarea {
+	border: 1px solid #8a7a66;
+	border-radius: 0.4rem;
+	font: inherit;
+	padding: 0.5rem;
+}
+
+input[aria-invalid='true'],
+textarea[aria-invalid='true'] {
+	border-color: #b3261e;
+}
+
+.row {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+.checkbox {
+	align-items: center;
+	display: flex;
+	gap: 0.5rem;
+}
+
+.error {
+	color: #b3261e;
+	margin: 0;
+}
+
+.buttons {
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+}
+
+button {
+	background: #a8502c;
+	border: none;
+	border-radius: 0.4rem;
+	color: #ffffff;
+	cursor: pointer;
+	font: inherit;
+	padding: 0.6rem 1.2rem;
+}
+
+.buttons a {
+	color: #8a3f20;
+}

@@ -1,0 +1,57 @@
+<h1>Panel administracyjny — restauracje</h1>
+
+<div class="toolbar">
+	<label>
+		Szukaj
+		<input type="search" placeholder="Nazwa restauracji" [value]="phrase()" (input)="updatePhrase($event)" />
+	</label>
+
+	<label>
+		Status
+		<select [value]="status()" (change)="updateStatus($event)">
+			<option value="">Wszystkie</option>
+			<option value="active">Aktywne</option>
+			<option value="inactive">Nieaktywne</option>
+		</select>
+	</label>
+
+	<a class="button" routerLink="/admin/restaurants/new">+ Dodaj restaurację</a>
+</div>
+
+<table>
+	<thead>
+		<tr>
+			<th [attr.aria-sort]="ariaSort('name')">
+				<button type="button" (click)="sort('name')">Name</button>
+			</th>
+			<th [attr.aria-sort]="ariaSort('cuisine')">
+				<button type="button" (click)="sort('cuisine')">Cuisine</button>
+			</th>
+			<th [attr.aria-sort]="ariaSort('rating')">
+				<button type="button" (click)="sort('rating')">Rating</button>
+			</th>
+			<th>Active</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (restaurant of visibleRestaurants(); track restaurant.id) {
+			<tr>
+				<td>{{ restaurant.name }}</td>
+				<td>{{ restaurant.cuisine }}</td>
+				<td>{{ restaurant.rating }}</td>
+				<td>{{ restaurant.isActive ? 'Tak' : 'Nie' }}</td>
+				<td class="actions">
+					<a [routerLink]="['/admin/restaurants', restaurant.id, 'edit']">Edytuj</a>
+					@if (restaurant.isActive) {
+						<button type="button" class="danger" (click)="deactivate(restaurant)">Dezaktywuj</button>
+					}
+				</td>
+			</tr>
+		} @empty {
+			<tr>
+				<td colspan="5">Brak restauracji.</td>
+			</tr>
+		}
+	</tbody>
+</table>

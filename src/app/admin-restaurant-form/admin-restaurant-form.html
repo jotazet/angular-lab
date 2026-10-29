@@ -1,0 +1,78 @@
+<h1>{{ isEdit ? 'Edycja restauracji' : 'Nowa restauracja' }}</h1>
+
+<form [formGroup]="form" (ngSubmit)="save()" novalidate>
+	<label>
+		Nazwa *
+		<input formControlName="name" [attr.aria-invalid]="hasError('name')" aria-describedby="name-error" />
+	</label>
+	@if (hasError('name')) {
+		<p class="error" id="name-error">Nazwa jest wymagana (min. 3 znaki).</p>
+	}
+
+	<label>
+		Opis *
+		<textarea formControlName="description" rows="3" [attr.aria-invalid]="hasError('description')" aria-describedby="description-error"></textarea>
+	</label>
+	@if (hasError('description')) {
+		<p class="error" id="description-error">Opis jest wymagany (min. 10 znaków).</p>
+	}
+
+	<label>
+		Rodzaj kuchni *
+		<input formControlName="cuisine" placeholder="np. polish, italian" [attr.aria-invalid]="hasError('cuisine')" />
+	</label>
+	@if (hasError('cuisine')) {
+		<p class="error">Rodzaj kuchni jest wymagany.</p>
+	}
+
+	<label>
+		Zdjęcie (URL)
+		<input formControlName="imageUrl" type="url" />
+	</label>
+
+	<div class="row">
+		<label>
+			Czas dostawy od (min) *
+			<input formControlName="deliveryTimeMin" type="number" [attr.aria-invalid]="hasError('deliveryTimeMin')" />
+		</label>
+		<label>
+			Czas dostawy do (min) *
+			<input formControlName="deliveryTimeMax" type="number" [attr.aria-invalid]="hasError('deliveryTimeMax')" />
+		</label>
+	</div>
+	@if (hasError('deliveryTimeMin') || hasError('deliveryTimeMax')) {
+		<p class="error">Czas dostawy musi być większy od 0.</p>
+	}
+
+	<div class="row">
+		<label>
+			Koszt dostawy (zł) *
+			<input formControlName="deliveryFee" type="number" step="0.01" [attr.aria-invalid]="hasError('deliveryFee')" />
+		</label>
+		<label>
+			Minimalna wartość zamówienia (zł) *
+			<input formControlName="minimumOrderValue" type="number" step="0.01" [attr.aria-invalid]="hasError('minimumOrderValue')" />
+		</label>
+	</div>
+	@if (hasError('deliveryFee') || hasError('minimumOrderValue')) {
+		<p class="error">Koszt dostawy i minimalna wartość zamówienia nie mogą być ujemne.</p>
+	}
+
+	<label>
+		Adres *
+		<input formControlName="address" [attr.aria-invalid]="hasError('address')" />
+	</label>
+	@if (hasError('address')) {
+		<p class="error">Adres jest wymagany.</p>
+	}
+
+	<label class="checkbox">
+		<input formControlName="isActive" type="checkbox" />
+		Aktywna
+	</label>
+
+	<div class="buttons">
+		<button type="submit">Zapisz</button>
+		<a routerLink="/admin/restaurants">Anuluj</a>
+	</div>
+</form>
