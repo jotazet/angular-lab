@@ -1,15 +1,15 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Restaurant } from '../models/restaurant';
-import { Restaurants } from '../services/restaurants';
+import { Restaurant } from '../../models/restaurant';
+import { Restaurants } from '../../services/restaurants';
 
 type SortColumn = 'name' | 'cuisine' | 'rating';
 
 @Component({
   imports: [RouterLink],
   selector: 'app-admin-restaurant-list',
-  styleUrl: './admin-restaurant-list.scss',
-  templateUrl: './admin-restaurant-list.html',
+  styleUrl: './restaurant-list.scss',
+  templateUrl: './restaurant-list.html',
 })
 export class AdminRestaurantList {
   private readonly restaurantsService = inject(Restaurants);

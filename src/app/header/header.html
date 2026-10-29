@@ -1,0 +1,18 @@
+<nav class="main-nav">
+	<a routerLink="/restaurants">Restauracje</a>
+
+	@if (users.currentUser(); as user) {
+		@if (user.role === 'admin') {
+			<a routerLink="/admin">Panel admina</a>
+		}
+		<span class="user">
+			Zalogowano: <a routerLink="/profile">{{ user.name }}</a>
+			<button type="button" (click)="logout()">Wyloguj</button>
+		</span>
+	} @else {
+		<span class="user">
+			<a routerLink="/login">Zaloguj</a>
+			<a routerLink="/register">Rejestracja</a>
+		</span>
+	}
+</nav>

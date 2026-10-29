@@ -1,0 +1,49 @@
+:host {
+	display: block;
+	margin: 0 auto;
+	max-width: 900px;
+	padding: 1.5rem 1rem;
+}
+
+.button {
+	background: #a8502c;
+	border-radius: 0.4rem;
+	color: #ffffff;
+	display: inline-block;
+	margin-bottom: 1rem;
+	padding: 0.6rem 1rem;
+	text-decoration: none;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th,
+td {
+	border-bottom: 1px solid #ddd2c2;
+	padding: 0.6rem;
+	text-align: left;
+}
+
+.actions {
+	display: flex;
+	gap: 0.5rem;
+}
+
+button {
+	background: #ffffff;
+	border: 1px solid #8a3f20;
+	border-radius: 0.3rem;
+	color: #8a3f20;
+	cursor: pointer;
+	font: inherit;
+	padding: 0.25rem 0.6rem;
+}
+
+.danger {
+	background: #b3261e;
+	border-color: #b3261e;
+	color: #ffffff;
+}

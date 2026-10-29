@@ -1,0 +1,23 @@
+.admin-menu {
+	align-items: center;
+	background: #3d2f22;
+	display: flex;
+	gap: 1.5rem;
+	padding: 0.75rem 1rem;
+}
+
+.admin-menu strong {
+	color: #ffffff;
+	margin-right: 1rem;
+}
+
+.admin-menu a {
+	color: #f3e6d6;
+	text-decoration: none;
+}
+
+.admin-menu a.active {
+	color: #ffffff;
+	font-weight: 700;
+	text-decoration: underline;
+}

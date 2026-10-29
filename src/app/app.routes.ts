@@ -1,21 +1,40 @@
 import { Routes } from '@angular/router';
-import { RestaurantList } from './restaurant-list/restaurant-list';
+import { isAdminGuard } from './guards/is-admin-guard';
+import { isLoggedInGuard } from './guards/is-logged-in-guard';
+
+// część klienta
 import { RestaurantDetails } from './restaurant-details/restaurant-details';
 import { RestaurantMenu } from './restaurant-menu/restaurant-menu';
 import { ProductDetails } from './product-details/product-details';
-import { AdminRestaurantList } from './admin-restaurant-list/admin-restaurant-list';
-import { AdminRestaurantForm } from './admin-restaurant-form/admin-restaurant-form';
+
+// konto użytkownika
+import { Login } from './auth/login/login';
+import { Register } from './auth/register/register';
+import { Profile } from './auth/profile/profile';
+
+// panel administracyjny
+import { AdminPanel } from './admin/admin-panel/admin-panel';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'restaurants', pathMatch: 'full' },
-  { path: 'restaurants', component: RestaurantList },
+
+  // część klienta
+  { path: 'restaurants', loadComponent: () => import('./restaurant-list/restaurant-list').then((m) => m.RestaurantList) },
   { path: 'restaurant/:id', component: RestaurantDetails },
   { path: 'restaurant/:id/menu', component: RestaurantMenu },
   { path: 'restaurant/:id/menu/:productId', component: ProductDetails },
 
-  // panel administracyjny
-  { path: 'admin', redirectTo: 'admin/restaurants', pathMatch: 'full' },
-  { path: 'admin/restaurants', component: AdminRestaurantList },
-  { path: 'admin/restaurants/new', component: AdminRestaurantForm },
-  { path: 'admin/restaurants/:id/edit', component: AdminRestaurantForm },
+  // konto użytkownika
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  { path: 'profile', component: Profile, canActivate: [isLoggedInGuard] },
+
+  // panel administracyjny — AdminPanel to szablon z menu, podstrony są w admin/admin.routes.ts
+  // guard na rodzicu chroni wszystkie trasy /admin/*
+  {
+    path: 'admin',
+    component: AdminPanel,
+    canActivate: [isAdminGuard],
+    loadChildren: () => import('./admin/admin.routes'),
+  },
 ];

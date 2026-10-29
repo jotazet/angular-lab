@@ -1,0 +1,27 @@
+
+.main-nav {
+	display: flex;
+	gap: 1.5rem;
+	padding: 1rem;
+}
+
+.main-nav a {
+	color: #8a3f20;
+	font-weight: 600;
+}
+
+.user {
+	display: flex;
+	gap: 1rem;
+	margin-left: auto;
+}
+
+.user button {
+	background: none;
+	border: 1px solid #8a3f20;
+	border-radius: 0.3rem;
+	color: #8a3f20;
+	cursor: pointer;
+	font: inherit;
+	padding: 0.1rem 0.6rem;
+}

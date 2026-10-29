@@ -1,13 +1,13 @@
 import { Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { Restaurants } from '../services/restaurants';
+import { Restaurants } from '../../services/restaurants';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
   selector: 'app-admin-restaurant-form',
-  styleUrl: './admin-restaurant-form.scss',
-  templateUrl: './admin-restaurant-form.html',
+  styleUrl: './restaurant-form.scss',
+  templateUrl: './restaurant-form.html',
 })
 export class AdminRestaurantForm implements OnInit {
   private readonly restaurantsService = inject(Restaurants);
