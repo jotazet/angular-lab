@@ -11,6 +11,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
       <strong>Panel admina</strong>
       <a routerLink="restaurants" routerLinkActive="active" ariaCurrentWhenActive="page">Restauracje</a>
       <a routerLink="users" routerLinkActive="active" ariaCurrentWhenActive="page">Użytkownicy</a>
+      <a routerLink="orders" routerLinkActive="active" ariaCurrentWhenActive="page">Zamówienia</a>
     </nav>
 
     <router-outlet />

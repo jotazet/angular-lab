@@ -1,6 +1,7 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Restaurants } from '../services/restaurants';
+import { Cart } from '../services/cart';
 
 @Component({
   imports: [RouterLink],
@@ -10,6 +11,7 @@ import { Restaurants } from '../services/restaurants';
 })
 export class ProductDetails {
   private readonly restaurantsService = inject(Restaurants);
+  private readonly cart = inject(Cart);
 
   // oba parametry z adresu /restaurant/:id/menu/:productId
   readonly id = input.required<string>();
@@ -22,7 +24,9 @@ export class ProductDetails {
   readonly added = signal(false);
 
   addToCart(): void {
-    // koszyka jeszcze nie ma — na razie tylko komunikat
-    this.added.set(true);
+    const product = this.product();
+    if (product) {
+      this.added.set(this.cart.add(Number(this.id()), product));
+    }
   }
 }

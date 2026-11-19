@@ -3,6 +3,8 @@ import { AdminRestaurantList } from './restaurant-list/restaurant-list';
 import { AdminRestaurantForm } from './restaurant-form/restaurant-form';
 import { UserList } from './user-list/user-list';
 import { UserForm } from './user-form/user-form';
+import { AdminOrderList } from './order-list/admin-order-list';
+import { OrderDetails } from '../orders/order-details';
 
 // podstrony panelu admina — wyświetlają się w <router-outlet> komponentu AdminPanel
 export const adminRoutes: Routes = [
@@ -20,6 +22,13 @@ export const adminRoutes: Routes = [
     children: [
       { path: '', component: UserList },
       { path: 'new', component: UserForm },
+    ],
+  },
+  {
+    path: 'orders',
+    children: [
+      { path: '', component: AdminOrderList },
+      { path: ':id', component: OrderDetails },
     ],
   },
 ];

@@ -1,10 +1,12 @@
 <nav class="main-nav">
 	<a routerLink="/restaurants">Restauracje</a>
+	<a routerLink="/cart">Koszyk ({{ cart.count() }})</a>
 
 	@if (users.currentUser(); as user) {
 		@if (user.role === 'admin') {
 			<a routerLink="/admin">Panel admina</a>
 		}
+		<a routerLink="/orders">Moje zamówienia</a>
 		<span class="user">
 			Zalogowano: <a routerLink="/profile">{{ user.name }}</a>
 			<button type="button" (click)="logout()">Wyloguj</button>
